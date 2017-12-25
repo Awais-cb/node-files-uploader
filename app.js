@@ -50,7 +50,7 @@ app.post('/upload',function(req,res,next) {
 			console.log(req.file);
 			if(req.file==undefined){
 				res.render('index',{
-					msg:"Error:please select a file to upload!"
+					msg:"Error:Please select a file to upload!"
 				});
 			}else{
 				res.render('index',{

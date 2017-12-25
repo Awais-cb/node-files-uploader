@@ -12,7 +12,7 @@ module.exports= {
 		if(extname && mimetype){
 			return callback(null,true);
 		}else{
-			callback("Error : images only!");
+			callback("Error:Images only!");
 		}
 	}
 }
