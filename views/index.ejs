@@ -33,7 +33,9 @@
     <button type="submit" class="btn">Submit</button>
     </form>
     <br>
-    <img src="<%= typeof file != undefined ? file : '' %>" alt="" class="responsive-img">
+    <% if(typeof file != 'undefined'){ %>
+    <img src="<%= file %>" alt="" class="responsive-img">
+	<% } %>
 	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>	
