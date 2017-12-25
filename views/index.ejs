@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Images uploader app</title>
+	<!-- using materilize css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+<body>
+	
+
+
+
+	<!-- shorthand if else statement using ternary operators ?: -->
+	<!-- typeof operator retuns type anything stored in a variable -->
+	<!-- if typeof msg is != to undefined print msg else->':' print nothing -->
+	<%= typeof msg != 'undefined' ? msg : '' %>
+
+	<div class="container">
+	<h2>Files Upload</h2>
+	<form action="/upload" method="post" enctype="multipart/form-data">
+    <div class="file-field input-field">
+      <div class="btn grey">
+        <span>File</span>
+        <input type="file" name="file_upload" >
+      </div>
+	  <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <button type="submit" class="btn">Submit</button>
+    </form>
+	</div>
+	
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>	
+	<!-- using materilize js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	
+</body>
+</html>
