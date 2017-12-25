@@ -2,16 +2,18 @@ const express = require('express');
 const ejs = require('ejs');
 const multer = require('multer');
 const path = require('path');
+const fileValidator = require('./custom_modules/file_validator');
 const port=8080;
 
 
 
 const app=express();
+app.set('views', path.join(__dirname + '/views'));
 app.set('view engine','ejs');
 
 app.use(express.static('./public'));
 
-// Setting up storage engines
+// 1-Setting up storage engines
 const storageEngine=multer.diskStorage({
 	destination : './public/uploads/',
 	filename : function (req,file,callback) {
@@ -20,10 +22,14 @@ const storageEngine=multer.diskStorage({
 	}
 });
 
- // Init uploader
+ // 2-Init uploader
  // using single for single file we can upload arrays of images too
  const uploader=multer({
- 	storage:storageEngine
+ 	storage:storageEngine,
+ 	limits:{fileSize:1000000},
+ 	fileFilter:function(req,file,callback) {
+ 		fileValidator.checkFileType(file,callback);
+ 	}
  }).single('file_upload');
 
 
@@ -42,7 +48,17 @@ app.post('/upload',function(req,res,next) {
 			});
 		}else{
 			console.log(req.file);
-			res.send('test');
+			if(req.file==undefined){
+				res.render('index',{
+					msg:"Error:please select a file to upload!"
+				});
+			}else{
+				res.render('index',{
+					msg:"File uploaded!",
+					file:`uploads/${req.file.filename}`
+				});
+			}
+			
 		}		
 	});
 });
